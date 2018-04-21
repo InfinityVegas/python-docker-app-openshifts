@@ -2,18 +2,18 @@ node{
    
    stage("App Build started"){
       echo 'App build started..'
-      git credentialsId: 'Github-ID', url: ''
+      git credentialsId: 'Github-ID', url: 'https://github.com/InfinityVegas/python-docker-app-openshifts.git'
       }
    
    stage('Docker Build') {
-     def app = docker.build "manee2k6/pattabiapp"
+     def app = docker.build "manee2k6/python-app"
     }
    
    stage("Tag & Push image"){
       withDockerRegistry([credentialsId: 'Github-ID', url: 'https://index.docker.io/v1/']) {
-          sh 'docker tag manee2k6/pattabiapp manee2k6/pattabiapp:001'
-          sh 'docker push manee2k6/pattabiapp:001'
-          sh 'docker push manee2k6/pattabiapp:latest'
+          sh 'docker tag manee2k6/python-app manee2k6/python-app:poornima_001'
+          sh 'docker push manee2k6/python-app:poornima_001'
+          sh 'docker push manee2k6/python-app:latest'
       }
     }
    
